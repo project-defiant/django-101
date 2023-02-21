@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.mypy]
+python_version = "3.10"
+files = ['montly_challenges/**/*.py']
+ignore_missing_imports = true
+scripts_are_modules = true
+check_untyped_defs = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_configs = true
+
+[tool.black]
+line-length = 85
+target-version = ['py39']
+include = '\.py$'
+
+
+[tool.pytest.ini_options]
+testpaths = ['tests']
+addopts = ["--cov=tabbs/", "--cov-report", "term-missing"]
+filterwarnings = "ignore"
+console_output_style = "count"
+in_place = true
+
+
+[tool.pylint]
+ignore = [
+	".git",
+    ".venv",
+    "__pycache__",
+    "./pytest_cache",
+    ".github",
+    ".mypy_cache",
+    "docs",
+    ".coverage",
+    "Makefile",
+    "pyproject.toml",
+    "setup.cfg",
+    "README.md",
+    ".tox",
+    "data",
+    "docker"
+]
+
+
+[tool.pylint.tests]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "fixme",
+    "duplicate-code",
+    "too-many-instance-attributes",
+    "too-few-public-methods",
+    "consider-using-f-string",
+    "broad-except",
+    "import-outside-toplevel",
+    "unused-import"
+]
+
+
+[tool.docformatter]
+recursive = true
+blank = true
+docstring-length = [1, 70]
+wrap-descriptions = 70
+wrap-summaries = 70
+pre-summary-newline = true
+
+
+
+[tool.isort]
+profile = "black"
+skip_glob = [".venv/**"]
+
+
+[tool.towncrier]
+package = "montly_challenges"
+filename = "CHANGELOG.rst"
+issue_format = "[{issue}]"
+all_bullets = true  # make all fragments bullet points

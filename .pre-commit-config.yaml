@@ -39,3 +39,4 @@ repos:
     rev: v1.0.1
     hooks:
       - id: mypy
+exclude: "/monthly_challenges/monthly_challenges/settings.py"
