@@ -43,10 +43,13 @@ def monthly_challenge(request: HttpRequest, month: str) -> HttpResponse:
     print(request)
     try:
         text = monthly_challenges[month]
-        response_data = f"<h1>{text}</h1>"
+        return render(
+            request,
+            "challenges/challenge.html",
+            {"text": text, "month": month.capitalize()},
+        )
     except KeyError:
         return HttpResponseNotFound("<h1>Not a month</h1>")
-    return HttpResponse(response_data)
 
 
 def monthly_challenge_by_idx(
