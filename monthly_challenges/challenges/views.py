@@ -3,6 +3,7 @@
 from collections import OrderedDict
 
 from django.http import (
+    Http404,
     HttpRequest,
     HttpResponse,
     HttpResponseNotFound,
@@ -40,8 +41,8 @@ def monthly_challenge(request: HttpRequest, month: str) -> HttpResponse:
             "challenges/challenge.html",
             {"text": text, "month": month.capitalize()},
         )
-    except KeyError:
-        return HttpResponseNotFound(render_to_string("404.html"))
+    except KeyError as exc:
+        raise Http404() from exc
 
 
 def monthly_challenge_by_idx(
@@ -53,8 +54,8 @@ def monthly_challenge_by_idx(
         redirect_month = list(monthly_challenges.keys())[month - 1]
         redirect_path = reverse("month-challenge", args=[redirect_month])
         return HttpResponseRedirect(redirect_to=redirect_path)
-    except IndexError:
-        return HttpResponseNotFound(render_to_string("404.html"))
+    except IndexError as exc:
+        raise Http404() from exc
 
 
 def index(request: HttpRequest) -> HttpResponse:
