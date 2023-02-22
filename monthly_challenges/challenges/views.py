@@ -18,13 +18,13 @@ monthly_challenges = OrderedDict(
         "march": "start rust development",
         "april": "start scala development",
         "may": "start Cpp development",
-        "june": "str",
-        "july": "str",
-        "august": "str",
-        "september": "str",
-        "october": "str",
-        "november": "str",
-        "december": "Str",
+        "june": None,
+        "july": None,
+        "august": None,
+        "september": None,
+        "october": None,
+        "november": None,
+        "december": None,
     }
 )
 
@@ -76,12 +76,8 @@ def monthly_challenge_by_idx(
 
 def index(request: HttpRequest) -> HttpResponse:
     """Index page."""
-    print(request)
-    return HttpResponse(
-        "".join(
-            [
-                f"<h2><a href={reverse('month-challenge', args=[month])}>{month}</h2>"
-                for month in monthly_challenges.keys()
-            ]
-        )
+    return render(
+        request,
+        "challenges/index.html",
+        {"data": list(monthly_challenges.keys())},
     )

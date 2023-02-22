@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block page_title %}
+    Monthly Challenges
+{% endblock page_title %}
+{% block content %}
+  {% include "./includes/header.html" %}
+  <h1>Monthly challenges</h1>
+    <ul>
+      {% for month in data %}
+        <li>
+          <a href="{% url 'month-challenge' month %}">{{ month | title }}
+          </li>
+        {% endfor %}
+      </ul>
+{% endblock content %}

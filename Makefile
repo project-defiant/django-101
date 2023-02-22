@@ -28,6 +28,7 @@ lint:
 	. .venv/bin/activate
 	flake8 ./monthly_challenges
 	pylint ./monthly_challenges
+	
 
 test:
 	. .venv/bin/activate
