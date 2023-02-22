@@ -8,6 +8,9 @@ install:
 	python -m pip install --upgrade setuptools wheel
 	python -m pip install -e .[dev]
 
+run:
+	. .venv/bin/activate
+	python3 monthly_challenges/manage.py runserver
 
 clean:
 	rm -rf .venv
