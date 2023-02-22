@@ -9,6 +9,7 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 monthly_challenges = OrderedDict(
@@ -49,7 +50,7 @@ def monthly_challenge(request: HttpRequest, month: str) -> HttpResponse:
             {"text": text, "month": month.capitalize()},
         )
     except KeyError:
-        return HttpResponseNotFound("<h1>Not a month</h1>")
+        return HttpResponseNotFound(render_to_string("404.html"))
 
 
 def monthly_challenge_by_idx(
@@ -68,10 +69,9 @@ def monthly_challenge_by_idx(
     try:
         redirect_month = list(monthly_challenges.keys())[month - 1]
         redirect_path = reverse("month-challenge", args=[redirect_month])
+        return HttpResponseRedirect(redirect_to=redirect_path)
     except IndexError:
-        return HttpResponseNotFound("<h1>Not a month</h1>")
-
-    return HttpResponseRedirect(redirect_to=redirect_path)
+        return HttpResponseNotFound(render_to_string("404.html"))
 
 
 def index(request: HttpRequest) -> HttpResponse:
