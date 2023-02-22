@@ -83,3 +83,11 @@ package = "montly_challenges"
 filename = "CHANGELOG.rst"
 issue_format = "[{issue}]"
 all_bullets = true  # make all fragments bullet points
+
+
+[tool.djlint]
+indent = 2
+exclude = ".venv"
+use_gitignore = true
+preserve_leading_space = true
+
