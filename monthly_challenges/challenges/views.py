@@ -29,18 +29,9 @@ monthly_challenges = OrderedDict(
     }
 )
 
-# Create your views here.
-
 
 def monthly_challenge(request: HttpRequest, month: str) -> HttpResponse:
-    """Month page for challenges app.
-
-    Args:
-        request (HttpRequest): incoming request
-
-    Returns:
-        HttpResponse: response
-    """
+    """Month page for challenges app."""
     print(request)
     try:
         text = monthly_challenges[month]
@@ -56,15 +47,7 @@ def monthly_challenge(request: HttpRequest, month: str) -> HttpResponse:
 def monthly_challenge_by_idx(
     request: HttpRequest, month: int
 ) -> HttpResponseRedirect:
-    """Month page for challenges app redirection.
-
-    Args:
-        request (HttpRequest):
-        month (int): month idx
-
-    Returns:
-        HttpResponseRedirect: redirect
-    """
+    """Redirect month index page to month page."""
     print(request)
     try:
         redirect_month = list(monthly_challenges.keys())[month - 1]
